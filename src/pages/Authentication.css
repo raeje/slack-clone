@@ -1,0 +1,160 @@
+:root {
+  --subtle-secondary: rgba(0, 100, 255, .6);
+}
+
+.authentication-page {
+  height: 100vh;
+  width: 100vw;
+
+  display: grid;
+  grid-template-rows: 30% 70%;
+  place-items: center;
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 40px 160px -12px inset, rgba(0, 0, 0, 0.3) 0px 33px 136px -18px inset;
+}
+
+  .auth-greetings {
+    height: 100%;
+    width: 50%;
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .greetings {
+    font-size: 60px;
+    font-weight: bolder;
+    color: var(--secondary-color)
+  }
+
+  .subtle {
+    color: rgba(128, 128, 128, .8);
+    color: var(--tertiary-color)
+  }
+
+.dev-login {
+  font-size: 35px;
+  background-color: transparent;
+  color: var(--secondary-color);
+  border: none;
+
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+
+  .auth-outlet-container {
+    height: 70%;
+    width: 40%;
+    margin-top: -5%;
+
+    display: grid;
+    grid-template-rows: 15% 85%;
+
+    border-radius: 5px;
+  }
+
+    .auth-outlet-links {
+      display: grid;
+      grid-template-columns: 50% 50%;
+    }
+
+      .auth-link {
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--subtle-secondary);
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 25px 25px 0 0;
+      }
+
+      .auth-link.active {
+        color: var(--primary-color);
+        background-color: var(--subtle-secondary);
+      }
+
+    .auth-outlet {
+      padding: 30px 100px;
+
+      border: 3px solid var(--subtle-secondary);
+      border-radius: 0 0 25px 25px;
+    }
+
+      .auth-form {
+        height: 70%;
+        display: grid;
+        grid-template-columns: 30% 70%;
+        align-items: center;
+      }
+
+        .auth-input {
+          padding: 5px;
+          font-size: 18px;
+        }
+
+      .auth-action-container {
+        height: 30%;
+
+        position: relative;
+
+        display: grid;
+        place-items: center;
+      }
+
+        .auth-action {
+          width: 200px;
+          height: 50px;
+          font-size: 20px;
+          background-color: var(--secondary-color);
+          color: var(--primary-color);
+          border: none;
+          border-radius: 5px;
+        }
+
+        .auth-notification {
+          font-size: 12px;
+          position: relative;
+          bottom: 0;
+        }
+
+.dev-login-container {
+  width: 150px;
+  height: 150px;
+  position: fixed;
+  top: 50px;
+  right: 10px;
+  background-color: transparent;
+
+  border: 1px solid var(--secondary-color);
+  border-radius: 10px;
+}
+
+  .dev-login-buttons {
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+    .dev-login-button {
+      height: 30px;
+      background-color: transparent;
+      color: var(--secondary-color);
+      font-weight: bolder;
+
+      border: 1px solid var(--secondary-color);
+      border-radius: 5px;
+    }
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}

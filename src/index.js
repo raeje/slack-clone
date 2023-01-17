@@ -1,17 +1,61 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+import "./index.css";
+import { AuthOutlet, CreateChannel } from "./routes";
+import { Authentication, Loading, Messenger } from "./pages";
+import Conversation from "./routes/Conversation";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to="/auth/login" />,
+  },
+  {
+    path: "/auth",
+    element: <Authentication />,
+    children: [
+      {
+        path: "/auth/login",
+        element: <AuthOutlet action="Login" />,
+      },
+      {
+        path: "/auth/register",
+        element: <AuthOutlet action="Register" />,
+      },
+    ],
+  },
+  {
+    path: "/loading",
+    element: <Loading />,
+  },
+  {
+    path: "/slack",
+    element: <Messenger />,
+    children: [
+      {
+        path: "/slack/direct-message/:id",
+        element: <Conversation />,
+      },
+      {
+        path: "/slack/create-channel",
+        element: <CreateChannel />,
+      },
+      {
+        path: "/slack/channel/:id",
+        element: <Conversation />,
+      },
+    ],
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
