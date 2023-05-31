@@ -109,14 +109,11 @@ const getMessages = async ({ user, type, usersList }) => {
     const userId = user.id;
     if (userId > 3095) {
       return await axios
-        .get(
-          `${URL}/messages?receiver_id=${userId}&receiver_className=${type}`,
-          {
-            receiver_id: userId,
-            receiver_class: type,
-            headers,
-          }
-        )
+        .get(`${URL}/messages?receiver_id=${userId}&receiver_class=${type}`, {
+          receiver_id: userId,
+          receiver_class: type,
+          headers,
+        })
         .then((response) => {
           if (response.data.data.length) {
             return response.data;
@@ -138,7 +135,7 @@ const getMessage = async ({ currentUser, receiverId, receiverClass }) => {
 
   return await axios
     .get(
-      `${URL}/messages?receiver_id=${receiverId}&receiver_className=${receiverClass}`,
+      `${URL}/messages?receiver_id=${receiverId}&receiver_class=${receiverClass}`,
       {
         receiver_id: receiverId,
         receiver_class: receiverClass,
