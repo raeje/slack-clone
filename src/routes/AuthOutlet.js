@@ -56,7 +56,8 @@ const AuthOutlet = ({ action }) => {
     const oldLocalUsersKeys = Object.keys(oldLocalUsers);
 
     const channelsList = await getAllChannels(currentUser.headers);
-    localUserData.channels = channelsList.data;
+    localUserData.channels = channelsList.data || [];
+    console.log("auth lud.ch", localUserData.channels);
     setChannels(channelsList);
 
     if (apiUsers.data.length === oldLocalUsersKeys.length) {
@@ -87,7 +88,6 @@ const AuthOutlet = ({ action }) => {
 
     if (currentUser) {
       localStorage.setItem("currentUser", JSON.stringify(localUserData));
-      console.log("auth channels", channels.data);
       navigate("/slack", { state: { channels: channelsList.data } });
     }
     console.log("Login done.");

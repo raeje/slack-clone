@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { createChannel, getAllChannels } from "../api";
+import { useOutletContext } from "react-router-dom";
+import { createChannel } from "../api";
 import { SearchBar } from "../parts";
 import { getCurrentUser } from "../utils/Utils";
 import "./CreateChannel.css";
@@ -9,6 +9,8 @@ const CreateChannel = () => {
   const channelNameRef = useRef("");
   const currentUser = getCurrentUser();
   const [members, setMembers] = useState([]);
+
+  const [channels, setChannels] = useOutletContext();
 
   const handleCreateChannel = async () => {
     const memberIds = members.map((member) => member.id);
@@ -25,6 +27,9 @@ const CreateChannel = () => {
       //update currentUser.channels
       currentUser.channels.push(apiResponse.data.data);
       localStorage.setItem("currentUser", JSON.stringify(currentUser));
+      setChannels((prev) => [...prev, apiResponse.data.data]);
+      channelNameRef.current.value = "";
+      setMembers([]);
     }
   };
 

@@ -39,10 +39,8 @@ const sendMessage = async (receiver_id, receiver_class, body, sender) => {
       client,
       expiry,
       uid,
-      //headers,
     })
     .then((response) => {
-      //headers = response.headers;
       console.log("Sending message...", response);
     })
     .catch((error) => {
@@ -91,11 +89,14 @@ const getMessages = async ({ user, type, usersList }) => {
     const userId = user.id;
     if (userId > 3095) {
       return await axios
-        .get(`${URL}/messages?receiver_id=${userId}&receiver_class=${type}`, {
-          receiver_id: userId,
-          receiver_class: type,
-          headers,
-        })
+        .get(
+          `${URL}/messages?receiver_id=${userId}&receiver_className=${type}`,
+          {
+            receiver_id: userId,
+            receiver_class: type,
+            headers,
+          }
+        )
         .then((response) => {
           if (response.data.data.length) {
             return response.data;
@@ -108,7 +109,6 @@ const getMessages = async ({ user, type, usersList }) => {
 };
 
 const getMessage = async ({ currentUser, receiverId, receiverClass }) => {
-  //console.log("api", receiverId);
   const headers = {
     "access-token": currentUser.headers["access-token"],
     client: currentUser.headers.client,
@@ -118,7 +118,7 @@ const getMessage = async ({ currentUser, receiverId, receiverClass }) => {
 
   return await axios
     .get(
-      `${URL}/messages?receiver_id=${receiverId}&receiver_class=${receiverClass}`,
+      `${URL}/messages?receiver_id=${receiverId}&receiver_className=${receiverClass}`,
       {
         receiver_id: receiverId,
         receiver_class: receiverClass,
@@ -138,7 +138,6 @@ const getAllUsers = async (headers) => {
 
 const getAllChannels = async (headers) => {
   return await axios.get(`${URL}/channels`, { headers }).then((response) => {
-    //console.log("my channels:", response.data);
     return response.data;
   });
 };

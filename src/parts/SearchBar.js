@@ -98,11 +98,12 @@ const SearchBar = ({ componentId, directMessages, setDirectMessages }) => {
   };
 
   return (
-    <div className={`search-bar ${componentId}`}>
+    <div className={`search-bar ${componentId} w-full`}>
       <input
+        id={componentId}
         type="text"
         ref={user}
-        className="search-bar-input"
+        className="search-bar-input w-full"
         list={componentId}
         placeholder="Search user by email"
         autoComplete="off"

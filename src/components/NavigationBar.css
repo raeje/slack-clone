@@ -70,7 +70,13 @@ i {
   display: grid;
   grid-template-columns: 85% 15%;
   align-items: center;
+
 }
+.channel-contact {
+  margin-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, .3);
+}
+
 
   .nav-section-name {
     color: var(--primary-color);

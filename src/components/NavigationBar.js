@@ -4,9 +4,10 @@ import { NavLink } from "react-router-dom";
 import { SearchBar, OutletLink } from "../parts";
 import { getCurrentUser } from "../utils/Utils";
 
-const NavigationBar = ({ directMessages }) => {
+const NavigationBar = ({ directMessages, channels }) => {
   const currentUser = getCurrentUser();
-  const localChannels = currentUser.channels;
+  const localChannels = currentUser.channels || [];
+  const [userChannels, setUserChannels] = useState(currentUser.channels || []);
   const [contacts, setContacts] = useState(directMessages);
 
   const renderDirectMessages = () => {
@@ -25,7 +26,7 @@ const NavigationBar = ({ directMessages }) => {
   };
 
   const renderCL = () => {
-    return localChannels.map((channel, index) => {
+    return channels.map((channel, index) => {
       return (
         <OutletLink
           path={`/slack/channel`}
@@ -62,7 +63,9 @@ const NavigationBar = ({ directMessages }) => {
       <div className="nav-section channel-contact">
         <span className="nav-section-name">Channels</span>
         <NavLink
-          to={{ pathname: "/slack/create-channel" }}
+          to={{
+            pathname: "/slack/create-channel",
+          }}
           className="create-channel-link outlet-link fa-solid fa-plus nav-section-btn"
           style={{ textDecoration: "none" }}
         />

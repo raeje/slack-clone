@@ -42,7 +42,7 @@ const Authentication = () => {
     const oldLocalUsersKeys = Object.keys(oldLocalUsers);
 
     const channelsList = await getAllChannels(currentUser.headers);
-    localUserData.channels = channelsList.data;
+    localUserData.channels = channelsList ? channelsList.data : [];
     setChannels(channelsList);
 
     if (apiUsers.data.length === oldLocalUsersKeys.length) {
@@ -78,43 +78,7 @@ const Authentication = () => {
     }
     console.log("Login done.");
   };
-  /*
-    const localUserData = {
-    dms: [],
-    channels: [],
-  };
-  const handleLogin = async (user) => {
-    const userData = await login(user);
-    localStorage.setItem("currentUser", JSON.stringify(userData));
-    console.log("auth user_headers", userData.headers);
 
-    const usersList = await getAllUsers(userData.headers);
-
-    const channelsList = await getAllChannels(userData.headers);
-    localUserData.channels = channelsList.data;
-    setChannels(channelsList);
-    console.log("auth channelsList", channelsList.data);
-
-    const stringifiedUsersListData = usersList.data.map((user) => {
-      const userIdString = user.id.toString();
-      return { id: userIdString, uid: user.uid };
-    });
-    console.log("auth usersList", usersList);
-    localStorage.setItem("users", JSON.stringify(stringifiedUsersListData));
-
-    if (userData) {
-      //console.log("auth nav slack", channelsList.data);
-      localStorage.setItem(
-        userData.data.data.id.toString(),
-        JSON.stringify(localUserData)
-      );
-      newLogin(user);
-      navigate("/slack", { state: { channels: channelsList.data } });
-    }
-
-    setCurrentUser(userData);
-  };
-*/
   const handleDevButtonClick = () => {
     setShowDevLogin(!showDevLogin);
   };
