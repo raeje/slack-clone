@@ -21,7 +21,7 @@ const Conversation = ({ path, type }) => {
   const [channelMembers, setChannelMembers] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const POLLING_TIMEOUT_SECS = 1;
+  const POLLING_TIMEOUT_SECS = process.env.POLLING_TIMEOUT_SECS || 30;
 
   useEffect(() => {
     updateMessages();
