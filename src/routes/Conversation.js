@@ -101,7 +101,7 @@ const Conversation = ({ path, type }) => {
   };
 
   let prevDate = "";
-  const renderConversation = msgs.map((msg, index) => {
+  const renderConversation = msgs?.map((msg, index) => {
     const [date, currDate, msgTime] = msg.created_at.match(/^(.+)T(.+)\./);
     //if first msg
     if (!index) {
