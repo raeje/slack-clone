@@ -4,21 +4,41 @@ const URL = process.env.REACT_APP_MSG_URL;
 
 const createUser = async ({ email, password, passwordConfirmation }) => {
   return await axios
-    .post(`${URL}/auth/`, {
-      email,
-      password,
-      password_confirmation: passwordConfirmation,
-    })
+    .post(
+      `${URL}/auth/`,
+      {
+        email,
+        password,
+        password_confirmation: passwordConfirmation,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    )
     .then((response) => response)
     .catch((error) => error);
 };
 
 const login = async ({ email, password }) => {
   return await axios
-    .post(`${URL}/auth/sign_in`, {
-      email,
-      password,
-    })
+    .post(
+      `${URL}/auth/sign_in`,
+      {
+        email,
+        password,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    )
     .then((response) => {
       console.log("Logged in...", response);
       return response;
