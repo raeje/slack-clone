@@ -57,7 +57,7 @@ const AuthOutlet = ({ action }) => {
 
     const channelsList = await getAllChannels(currentUser.headers);
     localUserData.channels = channelsList.data || [];
-    console.log("auth lud.ch", localUserData.channels);
+    console.log("auth lud.ch", channels, localUserData.channels);
     setChannels(channelsList);
 
     if (apiUsers.data.length === oldLocalUsersKeys.length) {

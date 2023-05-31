@@ -6,8 +6,6 @@ import { getCurrentUser } from "../utils/Utils";
 
 const NavigationBar = ({ directMessages, channels }) => {
   const currentUser = getCurrentUser();
-  const localChannels = currentUser.channels || [];
-  const [userChannels, setUserChannels] = useState(currentUser.channels || []);
   const [contacts, setContacts] = useState(directMessages);
 
   const renderDirectMessages = () => {

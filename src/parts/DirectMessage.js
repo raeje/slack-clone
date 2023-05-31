@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { getMessage } from "../api";
 import { getCurrentUser } from "../utils/Utils";
@@ -27,7 +27,7 @@ const DirectMessage = ({ receiverId, uid, index }) => {
       });
       setMessages(data);
     })();
-  }, []);
+  }, [currentUser, receiverId]);
 
   return (
     <NavLink

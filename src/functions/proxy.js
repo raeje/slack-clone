@@ -4,7 +4,7 @@ exports.handler = async (event, context) => {
   try {
     const response = await axios({
       method: event.httpMethod,
-      url: "http://206.189.91.54/api/v1",
+      url: "http://206.189.91.54/api/v1/auth/sign_in",
       headers: event.headers,
       data: event.body,
     });
